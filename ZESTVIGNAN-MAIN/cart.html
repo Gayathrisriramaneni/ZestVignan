@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zest Online - Cart</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background: #f9f9f9; }
+        .cart-item { padding: 10px; margin: 10px; border-bottom: 1px solid #ddd; text-align: left; }
+        .btn { padding: 10px 20px; background: #4CAF50; color: white; border: none; cursor: pointer; }
+        .top-right { position: absolute; top: 10px; right: 10px; }
+        .top-right a { margin-left: 15px; color: #4CAF50; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <!-- Top-right navigation links after login -->
+    <div class="top-right">
+        <a href="contact.html">Contact</a>
+        <a href="help.html">Help</a>
+        <a href="profile.html">Personal Info</a>
+    </div>
+
+    <h2>Order Summary</h2>
+    <div id="cart-items"></div>
+    <p><strong>Total: ₹<span id="total">0</span></strong></p>
+    <p><strong>Token Number: </strong><span id="token-number">N/A</span></p>
+    <button class="btn" onclick="payNow()">Pay Now</button>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem("cart")) || []; // Get cart from localStorage
+
+        function displayCart() {
+            const cartItemsDiv = document.getElementById('cart-items');
+            cartItemsDiv.innerHTML = ''; // Clear cart before adding new items
+
+            let total = 0;
+            cart.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('cart-item');
+                itemDiv.innerHTML = `<p>${item.item} - ₹${item.price}</p>`;
+                cartItemsDiv.appendChild(itemDiv);
+                total += item.price;
+            });
+
+            document.getElementById('total').innerText = total;
+            document.getElementById('token-number').innerText = cart[0]?.token || 'N/A'; // Display token number near payment
+        }
+
+        function payNow() {
+            alert('Payment Successful! Thank you for your order.');
+            localStorage.removeItem("cart"); // Clear cart from localStorage after payment
+            window.location.href = 'menu.html'; // Redirect back to the menu page
+        }
+
+        displayCart(); // Call displayCart when the page loads
+    </script>
+</body>
+</html>

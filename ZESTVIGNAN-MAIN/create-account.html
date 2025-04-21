@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zest Online - Create Account</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background: #f9f9f9; }
+        .container { width: 40%; margin: 20px auto; }
+        .input-field { margin: 10px; padding: 8px; width: 80%; }
+        .btn { padding: 10px 20px; background: #4CAF50; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Create Account</h2>
+        <input type="text" id="new-name" placeholder="Full Name" class="input-field"><br>
+        <input type="text" id="new-phone" placeholder="Phone Number" class="input-field"><br>
+        <input type="email" id="new-email" placeholder="Email" class="input-field"><br>
+        <input type="password" id="new-password" placeholder="Password" class="input-field"><br>
+        <button class="btn" onclick="createAccount()">Create Account</button>
+        <p><a href="login.html">Already have an account? Login here</a></p>
+    </div>
+
+    <script>
+        function createAccount() {
+            const name = document.getElementById('new-name').value;
+            const phone = document.getElementById('new-phone').value;
+            const email = document.getElementById('new-email').value;
+            const password = document.getElementById('new-password').value;
+
+            if (name && phone && email && password) {
+                const newUser = { name, phone, email, password };
+                localStorage.setItem('user', JSON.stringify(newUser)); // Save user data in localStorage
+                alert('Account created successfully!');
+                window.location.href = 'login.html'; // Redirect to login page
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+    </script>
+</body>
+</html>
