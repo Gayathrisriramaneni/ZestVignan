@@ -2,42 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Zest Online - Login</title>
+    <title>Zest Online - Personal Information</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background: #f9f9f9; margin: 0; }
-        .container { width: 40%; margin: 20px auto; text-align: center; }
-        .input-field { margin: 10px; padding: 10px; width: 80%; }
-        .btn { padding: 10px 20px; background: #4CAF50; color: white; border: none; cursor: pointer; }
-        .logo { width: 150px; position: absolute; top: 20px; left: 50%; transform: translateX(-50%); }
-        .login-form { position: absolute; top: 100px; left: 50%; transform: translateX(-50%); }
+        body { font-family: Arial, sans-serif; text-align: center; background: #f9f9f9; }
+        .top-right { position: absolute; top: 10px; right: 10px; }
+        .top-right a, .top-right button { margin-left: 15px; color: #4CAF50; text-decoration: none; }
+        .btn { padding: 10px 20px; background: #4CAF50; color: white; border: none; cursor: pointer; margin-top: 20px; }
     </style>
 </head>
 <body>
-    <!-- Logo centered on the login page -->
-    <img src="zest_logo.png" alt="Zest Logo" class="logo" id="login-logo">
-    <div class="container login-form">
-        <h2>Login</h2>
-        <input type="text" id="phone" placeholder="Phone Number" class="input-field"><br>
-        <input type="password" id="password" placeholder="Password" class="input-field"><br>
-        <button class="btn" onclick="login()">Login</button>
-        <p><a href="create-account.html">Create Account</a> | <a href="#">Forgot Password?</a></p>
+    <!-- Top-right navigation links -->
+    <div class="top-right">
+        <a href="menu.html">Menu</a>
+        <a href="contact.html">Contact</a>
+        <a href="help.html">Help</a>
+        <button onclick="logout()">Logout</button>
     </div>
 
+    <h2>Personal Information</h2>
+    <div id="user-info"></div>
+
     <script>
-        function login() {
-            const phone = document.getElementById('phone').value;
-            const password = document.getElementById('password').value;
+        const user = JSON.parse(localStorage.getItem('user'));
+        const userInfoDiv = document.getElementById('user-info');
 
-            // Get user data from localStorage
-            const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+            const nameEl = document.createElement('p');
+            nameEl.innerHTML = `<strong>Name:</strong> ${user.name}`;
+            const phoneEl = document.createElement('p');
+            phoneEl.innerHTML = `<strong>Phone:</strong> ${user.phone}`;
+            const emailEl = document.createElement('p');
+            emailEl.innerHTML = `<strong>Email:</strong> ${user.email}`;
 
-            if (user && phone === user.phone && password === user.password) {
-                alert('Login successful!');
-                localStorage.setItem('isLoggedIn', true); // Set login status
-                window.location.href = 'menu.html'; // Redirect to menu page after login
-            } else {
-                alert('Invalid credentials. Please try again.');
-            }
+            userInfoDiv.appendChild(nameEl);
+            userInfoDiv.appendChild(phoneEl);
+            userInfoDiv.appendChild(emailEl);
+        } else {
+            alert('You are not logged in. Please login first.');
+            window.location.href = 'login.html';
+        }
+
+        function logout() {
+            localStorage.removeItem('user'); // clear logged in user
+            alert('Logged out successfully!');
+            window.location.href = 'login.html';
         }
     </script>
 </body>
