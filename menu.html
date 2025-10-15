@@ -13,7 +13,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 3px;
+            padding: 3px 20px;
             background-color: #4CAF50;
             color: white;
         }
@@ -21,24 +21,22 @@
             width: 150px;
         }
         .top-right a {
-        margin-left: 20px;
-        color: white;
-        text-decoration: none;
-    }
-
-    .top-right button {
-        background-color: #FF5722;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        padding: 10px 15px;
-        margin-left: 20px; /* Added margin-left to create space between links */
-    }
-
-    .top-right button:hover {
-        background-color: #FF7043;
-    }
+            margin-left: 20px;
+            color: white;
+            text-decoration: none;
+        }
+        .top-right button {
+            background-color: #FF5722;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 10px 15px;
+            margin-left: 20px;
+        }
+        .top-right button:hover {
+            background-color: #FF7043;
+        }
         .menu-section {
             margin-top: 5px;
             padding: 20px;
@@ -109,8 +107,10 @@
         .cart-items li {
             margin: 10px 0;
         }
-        .cart-items strong {
-            font-weight: bold;
+        .cart-items img {
+            width: 80px;
+            margin-top: 5px;
+            border-radius: 5px;
         }
         #pay-btn {
             background-color: #4CAF50;
@@ -145,212 +145,123 @@
     <div class="menu-section">
         <h2>Our Menu</h2>
         <div class="menu-items">
-            <!-- Menu Item 1 -->
+            <!-- Example menu item -->
             <div class="menu-item" data-name="Biryani" data-price="199">
                 <img src="biryani.jpg" alt="Chicken Biryani">
                 <h3>Chicken Biryani</h3>
                 <p>₹199</p>
-                <button class="btn" onclick="addToCart('Chicken Biryani', 199)">Add</button>
+                <button class="btn" onclick="addToCart('Biryani', 199)">Add</button>
             </div>
-
-            <!-- Menu Item 2 -->
             <div class="menu-item" data-name="Cake" data-price="50">
-                <img src="cake.jpg" alt="Cake">
+                <img src="Cake.jpg" alt="Cake">
                 <h3>Cake</h3>
                 <p>₹50</p>
                 <button class="btn" onclick="addToCart('Cake', 50)">Add</button>
             </div>
-
-            <!-- Menu Item 3 -->
             <div class="menu-item" data-name="Pizza" data-price="299">
-                <img src="pizza.jpg" alt="Pizza">
+                <img src="Pizza.jpg" alt="Pizza">
                 <h3>Pizza</h3>
                 <p>₹299</p>
                 <button class="btn" onclick="addToCart('Pizza', 299)">Add</button>
             </div>
-
-            <!-- Menu Item 4 -->
             <div class="menu-item" data-name="Burger" data-price="149">
-                <img src="burger.jpg" alt="Burger">
+                <img src="Burger.jpg" alt="Burger">
                 <h3>Burger</h3>
                 <p>₹149</p>
                 <button class="btn" onclick="addToCart('Burger', 149)">Add</button>
             </div>
-
-            <!-- Menu Item 5 -->
             <div class="menu-item" data-name="Pasta" data-price="179">
-                <img src="pasta.jpg" alt="Pasta">
+                <img src="Pasta.jpg" alt="Pasta">
                 <h3>Pasta</h3>
                 <p>₹179</p>
                 <button class="btn" onclick="addToCart('Pasta', 179)">Add</button>
             </div>
-
-            <!-- Menu Item 6 -->
             <div class="menu-item" data-name="Noodles" data-price="109">
                 <img src="Noodles.jpg" alt="Noodles">
                 <h3>Noodles</h3>
                 <p>₹109</p>
                 <button class="btn" onclick="addToCart('Noodles', 109)">Add</button>
             </div>
-
-            <!-- Menu Item 7 -->
             <div class="menu-item" data-name="Salad" data-price="99">
-                <img src="salad.jpg" alt="Salad">
+                <img src="Salad.jpg" alt="Salad">
                 <h3>Salad</h3>
                 <p>₹99</p>
                 <button class="btn" onclick="addToCart('Salad', 99)">Add</button>
             </div>
-
-            <!-- Menu Item 8 (New) -->
             <div class="menu-item" data-name="Tacos" data-price="129">
-                <img src="tacos.jpg" alt="Tacos">
+                <img src="Tacos.jpg" alt="Tacos">
                 <h3>Tacos</h3>
                 <p>₹129</p>
                 <button class="btn" onclick="addToCart('Tacos', 129)">Add</button>
             </div>
-
-            <!-- Menu Item 9 (New) -->
             <div class="menu-item" data-name="Fried Rice" data-price="149">
                 <img src="fried_rice.jpg" alt="Fried Rice">
                 <h3>Fried Rice</h3>
                 <p>₹149</p>
                 <button class="btn" onclick="addToCart('Fried Rice', 149)">Add</button>
             </div>
-
-            <!-- Menu Item 10 (New) -->
             <div class="menu-item" data-name="Ice Cream" data-price="89">
                 <img src="ice_cream.jpg" alt="Ice Cream">
                 <h3>Ice Cream</h3>
                 <p>₹89</p>
                 <button class="btn" onclick="addToCart('Ice Cream', 89)">Add</button>
             </div>
-
-            <!-- Menu Item 11 -->
             <div class="menu-item" data-name="Milkshake" data-price="120">
                 <img src="milkshake.jpg" alt="Milkshake">
                 <h3>Milkshake</h3>
                 <p>₹120</p>
                 <button class="btn" onclick="addToCart('Milkshake', 120)">Add</button>
             </div>
-
-            <!-- Menu Item 12 -->
-            <div class="menu-item" data-name="" data-price="150">
+            <div class="menu-item" data-name="French fries" data-price="150">
                 <img src="French_fries.jpg" alt="French fries">
                 <h3>French fries</h3>
                 <p>₹150</p>
                 <button class="btn" onclick="addToCart('French fries', 150)">Add</button>
             </div>
-
-            <!-- Menu Item 13 -->
             <div class="menu-item" data-name="Pav Bhaji" data-price="70">
                 <img src="Pav_Bhaji.jpg" alt="Pav Bhaji">
                 <h3>Pav Bhaji</h3>
                 <p>₹70</p>
-                <button class="btn" onclick="addToCart('Milkshake', 70)">Add</button>
+                <button class="btn" onclick="addToCart('Pav Bhaji', 70)">Add</button>
             </div>
-
-            <!-- Menu Item 14 -->
             <div class="menu-item" data-name="Khichdi" data-price="120">
                 <img src="Khichdi.jpg" alt="Khichdi">
                 <h3>Khichdi</h3>
                 <p>₹120</p>
                 <button class="btn" onclick="addToCart('Khichdi', 120)">Add</button>
             </div>
-            <!-- Menu Item 15 -->
-            <div class="menu-item" data-name="idli" data-price="40">
-                <img src="idli.jpg" alt="idli">
-                <h3>idli</h3>
+            <div class="menu-item" data-name="Idli" data-price="40">
+                <img src="idli.jpg" alt="Idli">
+                <h3>Idli</h3>
                 <p>₹40</p>
-                <button class="btn" onclick="addToCart('idli', 40)">Add</button>
+                <button class="btn" onclick="addToCart('Idli', 40)">Add</button>
             </div>
-                    <!-- Menu Item 16 -->
             <div class="menu-item" data-name="Dosa" data-price="40">
                 <img src="Dosa.jpg" alt="Dosa">
                 <h3>Dosa</h3>
                 <p>₹40</p>
                 <button class="btn" onclick="addToCart('Dosa', 40)">Add</button>
             </div>
-                    <!-- Menu Item 17 -->
             <div class="menu-item" data-name="Poori" data-price="60">
                 <img src="Poori.jpg" alt="Poori">
                 <h3>Poori</h3>
                 <p>₹60</p>
                 <button class="btn" onclick="addToCart('Poori', 60)">Add</button>
             </div>
-        
-                   <!-- Menu Item 18 -->
             <div class="menu-item" data-name="South_Indian_non-veg_Meals" data-price="150">
-                <img src="South_Indian_non-veg_Meals.jpg" alt="South_Indian_non-veg_Meals">
-                <h3>South_Indian_non-veg_Meals</h3>
+                <img src="South_Indian_non-veg_Meals.jpg" alt="South Indian non-veg Meals">
+                <h3>South Indian Non-Veg Meals</h3>
                 <p>₹150</p>
-                <button class="btn" onclick="addToCart('South_Indian_non-veg_Meals.jpg', 150)">Add</button>
+                <button class="btn" onclick="addToCart('South_Indian_non-veg_Meals', 150)">Add</button>
             </div>
         </div>
 
-        <!-- Go to Cart Button -->
         <button id="go-to-cart-btn" onclick="showCart()">Go to Cart</button>
     </div>
 
-    <!-- Cart Summary Section (Initially Hidden) -->
+    <!-- Cart Summary -->
     <div id="cart-summary" class="cart-summary" style="display:none;">
         <h3>Your Cart</h3>
         <ul id="cart-items" class="cart-items"></ul>
-        <p><strong>Total: ₹<span id="total-price">0</span></strong></p>
-        <p><strong>Token Number: <span id="token-number">123456</span></strong></p>
-        <button id="pay-btn" onclick="payNow()">Pay Now</button>
-    </div>
+        <p><strong>Total: ₹<span id="total-price">0</span
 
-    <script>
-        let cart = []; // Cart array to store items
-        let totalPrice = 0; // Variable to store the total price
-        let tokenNumber = Math.floor(Math.random() * 1000000); // Generate a unique token number
-
-        // Function to add items to the cart
-        function addToCart(item, price) {
-            cart.push({ item, price });
-            totalPrice += price;
-            alert(item + " has been added to your cart!");
-        }
-
-        // Function to display the cart
-        function showCart() {
-            if (cart.length === 0) {
-                alert("Your cart is empty!");
-                return;
-            }
-
-            // Hide menu and show cart summary
-            document.querySelector('.menu-section').style.display = 'none';
-            document.getElementById('cart-summary').style.display = 'block';
-
-            // Display cart items
-            const cartItemsElement = document.getElementById('cart-items');
-            cartItemsElement.innerHTML = cart.map((item) => 
-                `<li>${item.item} - ₹${item.price}</li>`
-            ).join('');
-
-            // Display total price and token number
-            document.getElementById('total-price').innerText = totalPrice;
-            document.getElementById('token-number').innerText = tokenNumber;
-        }
-
-        // Function to handle payment
-        function payNow() {
-            alert('Payment Successful! Thank you for your order.');
-            cart = []; // Clear the cart
-            totalPrice = 0; // Reset total price
-
-            // Reset the UI
-            document.querySelector('.menu-section').style.display = 'block';
-            document.getElementById('cart-summary').style.display = 'none';
-        }
-
-        // Logout function
-        function logout() {
-            // Clear session or cookies if necessary (For simplicity, just redirect to login)
-            window.location.href = 'login.html';
-        }
-    </script>
-
-</body>
-</html>
