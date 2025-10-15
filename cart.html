@@ -4,19 +4,31 @@
     <meta charset="UTF-8">
     <title>Zest Online - Cart</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background: #f9f9f9; }
+        body { font-family: Arial, sans-serif; text-align: center; background: #f9f9f9; margin: 0; }
         .cart-item { padding: 10px; margin: 10px; border-bottom: 1px solid #ddd; text-align: left; }
-        .btn { padding: 10px 20px; background: #4CAF50; color: white; border: none; cursor: pointer; }
+        .btn { padding: 10px 20px; background: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 5px; }
         .top-right { position: absolute; top: 10px; right: 10px; }
-        .top-right a { margin-left: 15px; color: #4CAF50; text-decoration: none; }
+        .top-right a, .top-right button {
+            margin-left: 15px;
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .top-right a:hover, .top-right button:hover { background-color: #e0ffe0; }
     </style>
 </head>
 <body>
-    <!-- Top-right navigation links after login -->
+    <!-- Top-right navigation -->
     <div class="top-right">
-        <a href="contact.html">Contact</a>
+        <a href="menu.html">Menu</a>
         <a href="help.html">Help</a>
-        <a href="profile.html">Personal Info</a>
+        <a href="profile.html">Profile</a>
+        <button onclick="logout()">Logout</button>
     </div>
 
     <h2>Order Summary</h2>
@@ -26,11 +38,13 @@
     <button class="btn" onclick="payNow()">Pay Now</button>
 
     <script>
-        let cart = JSON.parse(localStorage.getItem("cart")) || []; // Get cart from localStorage
+        // Retrieve cart and token from localStorage
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let tokenNumber = localStorage.getItem("tokenNumber") || Math.floor(Math.random() * 1000000);
 
         function displayCart() {
             const cartItemsDiv = document.getElementById('cart-items');
-            cartItemsDiv.innerHTML = ''; // Clear cart before adding new items
+            cartItemsDiv.innerHTML = '';
 
             let total = 0;
             cart.forEach(item => {
@@ -42,16 +56,31 @@
             });
 
             document.getElementById('total').innerText = total;
-            document.getElementById('token-number').innerText = cart[0]?.token || 'N/A'; // Display token number near payment
+            document.getElementById('token-number').innerText = tokenNumber;
         }
 
         function payNow() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
             alert('Payment Successful! Thank you for your order.');
-            localStorage.removeItem("cart"); // Clear cart from localStorage after payment
-            window.location.href = 'menu.html'; // Redirect back to the menu page
+            localStorage.removeItem("cart");
+            localStorage.removeItem("tokenNumber");
+            window.location.href = 'menu.html';
         }
 
-        displayCart(); // Call displayCart when the page loads
+        function logout() {
+            localStorage.removeItem('user');
+            localStorage.removeItem('cart');
+            localStorage.removeItem('tokenNumber');
+            alert('Logged out successfully!');
+            window.location.href = 'login.html';
+        }
+
+        // Save token number for session
+        localStorage.setItem("tokenNumber", tokenNumber);
+        displayCart();
     </script>
 </body>
 </html>
