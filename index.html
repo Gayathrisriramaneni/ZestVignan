@@ -18,6 +18,23 @@
             padding: 15px;
             font-size: 24px;
         }
+        .top-right {
+            margin: 10px;
+        }
+        .top-right a, .top-right button {
+            margin-left: 15px;
+            text-decoration: none;
+            color: #ff6600;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .top-right a:hover, .top-right button:hover {
+            background-color: #ffe0cc;
+        }
         .container {
             max-width: 800px;
             margin: 20px auto;
@@ -56,16 +73,25 @@
     </style>
 </head>
 <body>
-    <header>
-        Zest Online - Order Your Favorite Food
-    </header>
+    <header>Zest Online - Order Your Favorite Food</header>
+
+    <!-- Navigation -->
+    <div class="top-right">
+        <a href="menu.html">Menu</a>
+        <a href="cart.html">Cart</a>
+        <a href="profile.html">Profile</a>
+        <button onclick="logout()">Logout</button>
+    </div>
+
     <div class="container">
         <h2>Menu</h2>
         <div id="menu"></div>
+
         <h2>Your Cart</h2>
         <div id="cart"></div>
         <p><strong>Total: $<span id="total">0.00</span></strong></p>
     </div>
+
     <script>
         const menu = [
             { name: "Burger", price: 5.99 },
@@ -73,8 +99,9 @@
             { name: "Pasta", price: 7.49 },
             { name: "Salad", price: 4.99 }
         ];
-        
-        const cart = [];
+
+        // Read cart from localStorage or create new
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
         function displayMenu() {
             const menuDiv = document.getElementById("menu");
@@ -92,10 +119,18 @@
 
         function addToCart(index) {
             cart.push(menu[index]);
-            updateCart();
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartDisplay();
+            alert(menu[index].name + " added to cart!");
         }
 
-        function updateCart() {
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
             const cartDiv = document.getElementById("cart");
             const totalSpan = document.getElementById("total");
             cartDiv.innerHTML = "";
@@ -113,12 +148,16 @@
             totalSpan.textContent = total.toFixed(2);
         }
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCart();
+        function logout() {
+            localStorage.removeItem('user'); // remove logged in user
+            localStorage.removeItem('cart'); // optional: clear cart on logout
+            alert('Logged out successfully!');
+            window.location.href = 'login.html';
         }
 
+        // Initialize menu and cart
         displayMenu();
+        updateCartDisplay();
     </script>
 </body>
 </html>
